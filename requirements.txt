@@ -1,0 +1,8 @@
+python-dotenv
+langchain
+langchain-openai
+langchain-google-genai
+pydantic
+pdfplumber
+python-docx
+pandas

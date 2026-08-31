@@ -1,0 +1,39 @@
+CUSTOMER COMPLAINT INTAKE FORM
+--------------------------------
+Date Submitted: 2026-07-30
+Customer Name: Marcus Reilly
+Email: marcus.reilly@example.com
+Phone: (313) 555-0142
+Product/Service: Debt Collection - Waypoint Resource Group, LLC
+Submitted Via: Web Complaint Form
+Supporting Documents Attached: Bankruptcy discharge order (referenced, not verified)
+
+Complaint Details:
+ACCOUNT IN QUESTION: Waypoint Resource Group LLC
+REPORTED BALANCE: $630.00
+DATE REPORTED: 04/12/2025
+
+I. STATEMENT OF COMPLAINT & PREMISES
+I am formally filing this complaint against WAYPOINT RESOURCE GROUP LLC for severe, willful, and ongoing violations of the Fair Debt Collection Practices Act (FDCPA), the Fair Credit Reporting Act (FCRA), and federal consumer privacy standards.
+
+Waypoint Resource Group LLC is currently reporting an unverified debt of $630.00 on my credit file while fraudulently misrepresenting themselves as the "Original Creditor." Waypoint is a third-party collection agency, not the original service provider. Reporting themselves as the original creditor constitutes a blatant, deceptive misrepresentation of the legal character, status, and origin of the alleged debt under 15 U.S.C. 1692e(2)(A). This debt was already discharged in a prior bankruptcy filing and is no longer owed.
+
+II. MANDATORY DEMANDS FOR EVIDENTIARY PROOF & INTERROGATORIES
+Because Waypoint Resource Group LLC has spammed my communications and published derogatory information to credit bureaus without providing legally sufficient validation, I demand that Waypoint Resource Group LLC immediately answer the following interrogatories and produce exact documentary proof:
+
+1. Data Acquisition & Permissible Purpose Interrogatory (15 U.S.C. 1681b & GLBA)
+Question: By what specific legal authority and through what channel did Waypoint Resource Group LLC acquire my private personally identifiable information (PII)?
+Demand: Provide the written, signed consumer authorization or contract establishing that I ever granted Waypoint Resource Group LLC permission to access, store, or process my sensitive credit information.
+
+2. Chain of Custody & Legal Standing Interrogatory
+Question: What is the unbroken, authenticated chain of title transferring this alleged obligation from the actual service provider to Waypoint Resource Group LLC?
+Demand: Provide the complete, unredacted Bill of Sale, Assignment Agreement, and Master Purchase Agreement explicitly listing my name, account number, and exact balance at the time of transfer. A generic electronic spreadsheet or computerized summary is legally insufficient to establish standing under 15 U.S.C. 1692g.
+
+3. Account Itemization & Original Agreement Interrogatory
+Question: How was the alleged balance of $630.00 calculated?
+Demand: Provide a complete account history starting from a $0.00 balance, detailing all principal charges, service periods, payments, payments credited, and any unauthorized late fees or administrative charges added by Waypoint Resource Group LLC. Furthermore, produce the original wet-ink or verified electronic contract bearing my legal signature.
+
+III. NOTICE OF STATUTORY DAMAGES & CIVIL LIABILITY EXPOSURE
+If Waypoint Resource Group LLC cannot produce certified, admissible documentary evidence answering every single point above, their continued reporting and collection efforts constitute willful non-compliance. I am formally documenting these violations to establish liability for civil damages under federal law: 15 U.S.C. 1692k (FDCPA): Statutory damages up to $1,000.00 per action, actual damages for credit defamation and distress, plus mandatory payment of all attorney fees and court costs.
+
+15 U.S.C. 1681n (FCRA Willful Non-Compliance): Statutory damages from $100.00 to $1,000.00 per violation, plus punitive damages and full legal fees for reporting false data ("Original Creditor").
