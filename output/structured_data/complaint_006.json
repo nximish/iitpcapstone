@@ -1,0 +1,12 @@
+{
+  "customer_name": "Terrence Boyd",
+  "email": "terrence.boyd@example.com",
+  "phone_number": "(317) 555-0126",
+  "complaint_category": "Credit Reporting",
+  "issue_description": "Dispute the accuracy of the CitiCards CBNA account listed on Equifax credit report, requesting a reinvestigation due to reported balance inaccuracies.",
+  "resolution_provided": "No resolution provided yet.",
+  "complaint": "Yes",
+  "escalation_required": "No",
+  "supporting_document_available": "No",
+  "overall_case_status": "Pending"
+}

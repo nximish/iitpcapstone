@@ -1,0 +1,12 @@
+{
+  "customer_name": "Robert Okafor",
+  "email": "robert.okafor@example.com",
+  "phone_number": "(801) 555-0110",
+  "complaint_category": "Mortgage",
+  "issue_description": "Complaint regarding a mortgage loan modification that increased the interest rate from approximately 3.75% to 7.25% and the monthly payment from approximately $900.00 to $1,500.00, making the mortgage less affordable.",
+  "resolution_provided": "No resolution provided yet.",
+  "complaint": "Yes",
+  "escalation_required": "Yes",
+  "supporting_document_available": "No",
+  "overall_case_status": "Pending"
+}

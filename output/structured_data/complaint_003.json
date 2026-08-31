@@ -1,0 +1,12 @@
+{
+  "customer_name": "Diane Castellano",
+  "email": "diane.castellano@example.com",
+  "phone_number": "(516) 555-0173",
+  "complaint_category": "billing",
+  "issue_description": "Customer disputes the balance and predatory fee structure on their CareCredit account, claiming retroactive interest and excessive late fees are preventing debt repayment.",
+  "resolution_provided": "No resolution provided yet.",
+  "complaint": "Yes",
+  "escalation_required": "Yes",
+  "supporting_document_available": "Yes",
+  "overall_case_status": "Pending"
+}
