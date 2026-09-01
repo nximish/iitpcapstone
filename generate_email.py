@@ -1,6 +1,7 @@
 from llm_provider import get_llm
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
+from utils import invoke_with_retry
 
 llm = get_llm()
 parser = StrOutputParser()
@@ -22,7 +23,8 @@ email_prompt = PromptTemplate(
 email_chain = email_prompt | llm | parser
 
 def generate_customer_email(case_record):
-    email_text = email_chain.invoke({
+    email_text = invoke_with_retry(email_chain,
+   {
         "customer_name": case_record.customer_name,
         "issue_description": case_record.issue_description,
         "resolution_provided": case_record.resolution_provided,

@@ -1,6 +1,7 @@
 from llm_provider import get_llm
 from schemas import CaseRecord
 from langchain_core.prompts import PromptTemplate
+from utils import invoke_with_retry
 
 llm = get_llm().with_structured_output(CaseRecord)
 
@@ -18,7 +19,7 @@ extract_prompt = PromptTemplate(
 extract_chain = extract_prompt | llm
 
 def extract_case_record(document_text):
-    record = extract_chain.invoke({"document_text": document_text})
+    record = invoke_with_retry(extract_chain, {"document_text": document_text})
     return record
 
 if __name__ == "__main__":

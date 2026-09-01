@@ -1,0 +1,5 @@
+This is not actually a valid PDF file. It has a .pdf extension but the content
+inside is plain text garbage, not a real PDF binary structure. pdfplumber should
+fail to parse this and raise an exception when load_document() tries to open it,
+which lets us verify the try/except in ingest.py handles a corrupted file without
+crashing the whole batch run.

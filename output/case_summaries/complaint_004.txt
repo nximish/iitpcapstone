@@ -1,19 +1,16 @@
-**Internal Case Summary: Customer Complaint**
-
-**Customer Name:** Robert Okafor  
-**Category:** Mortgage  
+**Internal Case Summary: Customer Complaint - Robert Okafor**
 
 **Case Overview:**  
-Robert Okafor has filed a complaint concerning a mortgage loan modification that resulted in a significant increase in both the interest rate and monthly payment. 
+Customer Robert Okafor has submitted a complaint regarding his mortgage loan modification. The modification has resulted in a significant increase in his interest rate from approximately 3.75% to 7.25%, and his monthly payment has risen from approximately $900.00 to $1,500.00, rendering the mortgage less affordable.
 
 **Key Issue:**  
-The modification raised the interest rate from approximately 3.75% to 7.25%, which increased the monthly payment from approximately $900.00 to $1,500.00, rendering the mortgage less affordable for the customer.
+The primary issue is the substantial increase in both the interest rate and monthly payment following the loan modification, which has adversely affected the customer's ability to manage his mortgage payments.
 
 **Action Taken So Far:**  
-No resolution has been provided to the customer as of yet.
+No resolution has been provided to the customer at this time.
 
 **Current Status:**  
-The case is currently pending and requires escalation.
+The case is currently pending and requires escalation for further review and resolution.
 
 **Recommended Next Action:**  
-Escalate the case to the appropriate department for further review and resolution to address the customer's concerns regarding the affordability of the modified mortgage terms.
+Escalate the case to the appropriate department for a thorough review of the mortgage loan modification terms and to explore potential solutions that could address the customer's affordability concerns.

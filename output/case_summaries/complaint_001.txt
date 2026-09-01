@@ -1,7 +1,7 @@
 **Internal Case Summary: Customer Complaint - Marcus Reilly**
 
 **Case Overview:**  
-Marcus Reilly has filed a complaint against Waypoint Resource Group LLC, alleging violations of the Fair Debt Collection Practices Act and the Fair Credit Reporting Act. The complaint centers around an unverified debt of $630.00 that has been reported on his credit file.
+Marcus Reilly has filed a complaint against Waypoint Resource Group LLC, alleging violations of the Fair Debt Collection Practices Act and the Fair Credit Reporting Act. The complaint pertains to an unverified debt of $630.00 that has been reported on his credit file.
 
 **Key Issue:**  
 The primary issue is the reporting of an unverified debt, which may constitute a violation of federal debt collection and credit reporting laws.
@@ -13,4 +13,4 @@ No resolution has been provided to the customer at this time.
 The case is currently pending and requires escalation for further review and action.
 
 **Recommended Next Action:**  
-Escalate the case to the appropriate department for a thorough investigation into the complaint and to determine the validity of the reported debt. Prompt communication with the customer regarding the progress of their complaint is also recommended.
+Escalate the case to the appropriate department for a thorough investigation into the complaint and to determine the validity of the reported debt. Prompt communication with the customer regarding the next steps is also recommended.

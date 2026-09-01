@@ -1,6 +1,7 @@
 from llm_provider import get_llm
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
+from utils import invoke_with_retry
 
 llm = get_llm()
 parser = StrOutputParser()
@@ -24,7 +25,8 @@ summary_prompt = PromptTemplate(
 summary_chain = summary_prompt | llm | parser
 
 def generate_case_summary(case_record):
-    summary_text = summary_chain.invoke({
+    summary_text = invoke_with_retry(summary_chain,
+     {
         "customer_name": case_record.customer_name,
         "complaint_category": case_record.complaint_category,
         "issue_description": case_record.issue_description,
