@@ -49,6 +49,7 @@ project-1-doc-processing/
 ├── extract.py                  # LLM call -> structured CaseRecord
 ├── generate_email.py           # LLM call -> customer response email
 ├── generate_summary.py         # LLM call -> internal case summary
+├── utils.py                    # retry/backoff wrapper for LLM calls
 ├── workflow.py                 # orchestrates one document end to end
 ├── main.py                     # batch entrypoint, loops over data/, builds final_report.csv
 ├── requirements.txt
@@ -90,7 +91,9 @@ This reads every file in `data/`, processes each one through the full pipeline, 
 
 ## Sample Data
 
-`data/` contains 6 sample complaint documents (2 `.txt`, 2 `.docx`, 2 `.pdf`), covering debt collection, credit card, mortgage, and checking account complaints, with a mix of clearly escalation-worthy and more routine cases. The source narratives are real, anonymized complaints (via the public CFPB Consumer Complaint Database), with synthetic customer contact details added since the public dataset doesn't include any.
+`data/` contains 6 valid sample complaint documents (2 `.txt`, 2 `.docx`, 2 `.pdf`), covering debt collection, credit card, mortgage, and checking account complaints, with a mix of clearly escalation-worthy and more routine cases. The source narratives are real, anonymized complaints (via the public CFPB Consumer Complaint Database), with synthetic customer contact details added since the public dataset doesn't include any.
+
+`data/` also includes `complaint_007_corrupted.pdf` — a deliberately invalid file, included to demonstrate the ingestion error handling: `load_document()` catches the parse failure, logs it, and the batch continues processing the other 6 documents without crashing.
 
 ## Sample Output
 
@@ -114,7 +117,8 @@ The generated customer email and internal case summary for this document are in 
 ## Key Design Decisions
 
 - **Chained calls instead of one prompt.** Extraction happens once per document and the result is reused for both the email and the summary, instead of asking the LLM to do everything in a single call. This keeps each step's output grounded in the same extracted facts and makes each step independently testable.
-- **Pydantic schema, not free-text extraction.** `CaseRecord` forces the LLM's output into the 10 fields the workflow actually needs, with `Literal["Yes","No"]` on the three boolean-style fields so downstream code doesn't have to parse loose text.
+- **Pydantic schema, not free-text extraction.** `CaseRecord` forces the LLM's output into the 10 fields the workflow actually needs, with `Literal["Yes","No"]` on the three boolean-style fields, and `Literal` fixed sets on `complaint_category` (plus an `"Other"` fallback) and `overall_case_status`, so downstream code doesn't have to parse or normalize loose text.
+- **Retry with backoff on LLM calls.** `utils.py`'s `invoke_with_retry` wraps every `chain.invoke()` call (extraction, email, summary) with up to 3 attempts and linear backoff, so a transient API failure doesn't fail the whole document on the first try.
 - **Provider factory pattern.** `llm_provider.py` reads `config.json` and switches between OpenAI and Gemini based on one config value, so the LLM backend isn't hard-coded into the extraction/generation modules.
 - **Low temperature (0.3).** This is an extraction/summarization task, not creative writing — lower temperature keeps output more consistent across runs.
 - **Per-file error handling in ingestion.** `ingest.py` catches errors per file so one corrupt or unsupported document doesn't stop the whole batch.
@@ -122,9 +126,8 @@ The generated customer email and internal case summary for this document are in 
 
 ## Limitations
 
-- No retry/backoff logic if an LLM API call fails mid-batch — a failed document is logged and skipped, but not automatically retried.
+- Retries are per-call, not per-document — if a document fails after exhausting all 3 retries (e.g. a sustained outage), that document is logged and skipped for the rest of the batch, not retried as a whole later.
 - Batch processing is sequential, not parallel — processing time scales linearly with the number of documents.
-- `complaint_category` and `overall_case_status` are free text, not constrained to a fixed set of values, so wording/casing can vary slightly between documents.
 - Every run reprocesses the entire `data/` folder from scratch — there's no tracking of which documents were already processed.
 - The generated customer email is saved to a file, not actually sent anywhere.
 - Sample data is synthetic/anonymized, not real production complaint data.
