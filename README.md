@@ -95,6 +95,10 @@ This reads every file in `data/`, processes each one through the full pipeline, 
 
 `data/` also includes `complaint_007_corrupted.pdf` — a deliberately invalid file, included to demonstrate the ingestion error handling: `load_document()` catches the parse failure, logs it, and the batch continues processing the other 6 documents without crashing.
 
+### Using Your Own Documents
+
+To test against different complaints, drop any `.txt`, `.pdf`, or `.docx` files into `data/` — alongside the sample files or instead of them — and run `python main.py` again. No code or filename changes needed: `load_all_documents()` picks up every supported file in the folder regardless of name. Note that non-complaint documents will still get forced into the `CaseRecord` schema rather than failing cleanly (see Limitations).
+
 ## Sample Output
 
 For `complaint_001.txt`, the extracted structured record looks like:
@@ -131,3 +135,4 @@ The generated customer email and internal case summary for this document are in 
 - Every run reprocesses the entire `data/` folder from scratch — there's no tracking of which documents were already processed.
 - The generated customer email is saved to a file, not actually sent anywhere.
 - Sample data is synthetic/anonymized, not real production complaint data.
+- The extraction schema assumes the input is actually a complaint-style document. Since every `CaseRecord` field is required, feeding in an unrelated document doesn't fail cleanly — the LLM forces its best guess into each field instead.
