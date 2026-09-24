@@ -7,7 +7,7 @@ class CaseRecord(BaseModel):
     phone_number: str = Field(..., description = "Customer's phone number, as it appears in the document.")
     complaint_category: Literal["Billing", "Debt Collection", "Mortgage", "Credit Reporting", "Product Defect", "Service Delay", "Account Access", "Other"] = Field(..., description = "Category of the complaint. Use 'Other' if none of the listed categories fit.")
     issue_description: str = Field(..., description = "A concise summary of the customer's issue, based only on the document text.")
-    resolution_provided: str = Field(..., description = "Any resolution, refund, or action the business has actually already provided or agreed to, based on the document. Do NOT include what the customer is requesting or hoping for — if the document only shows a request with no business action taken yet, say 'No resolution provided yet.'")
+    resolution_provided: str = Field(..., description = "Any resolution, refund, or action the business has actually already provided or agreed to, based on the document. Do NOT include what the customer is requesting or hoping for: if the document only shows a request with no business action taken yet, say 'No resolution provided yet.'")
     complaint: Literal["Yes", "No"] = Field(..., description = "Whether this document is actually a customer complaint.")
     escalation_required: Literal["Yes", "No"] = Field(..., description = "Whether this case requires escalation to a higher support tier.")
     supporting_document_available: Literal["Yes", "No"] = Field(..., description = "Whether the document mentions any supporting documents or attachments.")

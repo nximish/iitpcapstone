@@ -1,6 +1,6 @@
 # AI Customer Complaint & Case Processing System
 
-Capstone project for the IIT Patna GenAI Development Program — Project 1: AI-Powered Document Processing & Business Workflow.
+Capstone project for the IIT Patna GenAI Development Program - Project 1: AI-Powered Document Processing & Business Workflow.
 
 ## Problem Statement
 
@@ -11,11 +11,11 @@ Businesses that handle customer complaints receive them in different formats (te
 This project reads a batch of complaint documents from a local folder and runs each one through a small pipeline:
 
 1. **Ingest** the document and pull out the raw text, regardless of whether it's `.txt`, `.pdf`, or `.docx`.
-2. **Extract** structured information from the text using an LLM constrained to a fixed schema (customer details, complaint category, issue, resolution status, escalation flag, etc.) — not just a free-text summary.
+2. **Extract** structured information from the text using an LLM constrained to a fixed schema (customer details, complaint category, issue, resolution status, escalation flag, etc.) - not just a free-text summary.
 3. **Generate** two things from that structured data: a professional customer-facing response email, and a separate internal case summary for staff.
 4. **Save** everything per document, and build one consolidated CSV covering the whole batch.
 
-The three AI steps (extract → email, extract → summary) are separate, chained calls, not one giant prompt — each one takes the previous step's output as input, so a document only gets analyzed once, and both downstream outputs stay grounded to the same extracted facts.
+The three AI steps (extract → email, extract → summary) are separate, chained calls, not one giant prompt: each one takes the previous step's output as input, so a document only gets analyzed once, and both downstream outputs stay grounded to the same extracted facts.
 
 ## Architecture
 
@@ -93,11 +93,11 @@ This reads every file in `data/`, processes each one through the full pipeline, 
 
 `data/` contains 6 valid sample complaint documents (2 `.txt`, 2 `.docx`, 2 `.pdf`), covering debt collection, credit card, mortgage, and checking account complaints, with a mix of clearly escalation-worthy and more routine cases. The source narratives are real, anonymized complaints (via the public CFPB Consumer Complaint Database), with synthetic customer contact details added since the public dataset doesn't include any.
 
-`data/` also includes `complaint_007_corrupted.pdf` — a deliberately invalid file, included to demonstrate the ingestion error handling: `load_document()` catches the parse failure, logs it, and the batch continues processing the other 6 documents without crashing.
+`data/` also includes `complaint_007_corrupted.pdf`: a deliberately invalid file, included to demonstrate the ingestion error handling. `load_document()` catches the parse failure, logs it, and the batch continues processing the other 6 documents without crashing.
 
 ### Using Your Own Documents
 
-To test against different complaints, drop any `.txt`, `.pdf`, or `.docx` files into `data/` — alongside the sample files or instead of them — and run `python main.py` again. No code or filename changes needed: `load_all_documents()` picks up every supported file in the folder regardless of name. Note that non-complaint documents will still get forced into the `CaseRecord` schema rather than failing cleanly (see Limitations).
+To test against different complaints, drop any `.txt`, `.pdf`, or `.docx` files into `data/`, alongside the sample files or instead of them, and run `python main.py` again. No code or filename changes needed: `load_all_documents()` picks up every supported file in the folder regardless of name. Note that non-complaint documents will still get forced into the `CaseRecord` schema rather than failing cleanly (see Limitations).
 
 ## Sample Output
 
@@ -124,15 +124,15 @@ The generated customer email and internal case summary for this document are in 
 - **Pydantic schema, not free-text extraction.** `CaseRecord` forces the LLM's output into the 10 fields the workflow actually needs, with `Literal["Yes","No"]` on the three boolean-style fields, and `Literal` fixed sets on `complaint_category` (plus an `"Other"` fallback) and `overall_case_status`, so downstream code doesn't have to parse or normalize loose text.
 - **Retry with backoff on LLM calls.** `utils.py`'s `invoke_with_retry` wraps every `chain.invoke()` call (extraction, email, summary) with up to 3 attempts and linear backoff, so a transient API failure doesn't fail the whole document on the first try.
 - **Provider factory pattern.** `llm_provider.py` reads `config.json` and switches between OpenAI and Gemini based on one config value, so the LLM backend isn't hard-coded into the extraction/generation modules.
-- **Low temperature (0.3).** This is an extraction/summarization task, not creative writing — lower temperature keeps output more consistent across runs.
+- **Low temperature (0.3).** This is an extraction/summarization task, not creative writing: lower temperature keeps output more consistent across runs.
 - **Per-file error handling in ingestion.** `ingest.py` catches errors per file so one corrupt or unsupported document doesn't stop the whole batch.
-- **Customer email deliberately excludes internal-only fields** (`escalation_required`, `complaint_category`) that the internal summary includes — the two generation prompts are given different subsets of the extracted data on purpose.
+- **Customer email deliberately excludes internal-only fields** (`escalation_required`, `complaint_category`) that the internal summary includes: the two generation prompts are given different subsets of the extracted data on purpose.
 
 ## Limitations
 
-- Retries are per-call, not per-document — if a document fails after exhausting all 3 retries (e.g. a sustained outage), that document is logged and skipped for the rest of the batch, not retried as a whole later.
-- Batch processing is sequential, not parallel — processing time scales linearly with the number of documents.
-- Every run reprocesses the entire `data/` folder from scratch — there's no tracking of which documents were already processed.
+- Retries are per-call, not per-document: if a document fails after exhausting all 3 retries (e.g. a sustained outage), that document is logged and skipped for the rest of the batch, not retried as a whole later.
+- Batch processing is sequential, not parallel: processing time scales linearly with the number of documents.
+- Every run reprocesses the entire `data/` folder from scratch: there's no tracking of which documents were already processed.
 - The generated customer email is saved to a file, not actually sent anywhere.
 - Sample data is synthetic/anonymized, not real production complaint data.
-- The extraction schema assumes the input is actually a complaint-style document. Since every `CaseRecord` field is required, feeding in an unrelated document doesn't fail cleanly — the LLM forces its best guess into each field instead.
+- The extraction schema assumes the input is actually a complaint-style document. Since every `CaseRecord` field is required, feeding in an unrelated document doesn't fail cleanly: the LLM forces its best guess into each field instead.
